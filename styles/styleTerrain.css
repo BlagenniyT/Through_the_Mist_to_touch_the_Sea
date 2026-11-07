@@ -1,0 +1,130 @@
+/* --- БЛОК С КАРТАМИ (MAPS) --- */
+.maps {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 130px 20px 30px 20px; /* Отступ сверху под фиксированное меню */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Заголовки над каждой картой */
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #d1cbb3;
+    text-align: center;
+    margin: 40px 0 25px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(85, 102, 68, 0.4);
+}
+
+/* Компас / рунические символы по бокам от названия локации */
+h2::before, h2::after {
+    content: " ✧ "; /* Можно заменить на ✧, ᛟ или ⌖ */
+    font-size: 1.3rem;
+    color: #556644;
+    margin: 0 12px;
+    filter: grayscale(100%) brightness(80%); /* Приглушаем цвет эмодзи под общий мрак */
+}
+h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #d1cbb3;
+    text-align: center;
+    margin: 10px 0 25px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(85, 102, 68, 0.4);
+}
+
+/* Компас / рунические символы по бокам от названия локации */
+h3::before, h3::after {
+    content: " ✧ "; /* Можно заменить на ✧, ᛟ или ⌖ */
+    font-size: 1.3rem;
+    color: #556644;
+    margin: 0 12px;
+    filter: grayscale(100%) brightness(80%); /* Приглушаем цвет эмодзи под общий мрак */
+}
+/* Сама картинка карты (как древний пергамент в рамке) */
+.map {
+    width: 100%;
+    height: auto; /* Карта показывается целиком, без обрезки */
+    max-height: 75vh; /* Чтобы карта помещалась на один экран целиком */
+    object-fit: contain;
+    background-color: #090a0b;
+    padding: 12px; /* Эффект багета / паспарту вокруг карты */
+    border: 2px solid #2c3128;
+    outline: 1px solid #4a573e; /* Тонкая внутренняя мшистая рамка */
+    outline-offset: -8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 0, 0, 0.8);
+    filter: sepia(20%) contrast(105%); /* Легкий оттенок старины */
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.map:hover {
+    border-color: #6b7a58;
+    filter: sepia(5%) contrast(110%); /* При наведении карта становится чуть четче */
+}
+
+/* Скрытие пустой карты, если src="" еще не заполнен */
+.map[src=""], 
+.map:not([src]) {
+    display: none;
+}
+
+/* --- БЛОК С ОПИСАНИЕМ МЕСТНОСТИ (OPISANIE) --- */
+.opisanie {
+    max-width: 850px;
+    margin: 20px auto 80px auto;
+    padding: 40px;
+    background: rgba(15, 17, 19, 0.85);
+    border: 1px solid #232722;
+    border-left: 3px solid #4a573e; /* Болотно-мшистый акцент слева */
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 15px 40px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 2;
+}
+
+.opisanie p {
+    color: #aba58d;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-indent: 30px; /* Красная строка для каждого абзаца <p> */
+    margin-bottom: 18px;
+}
+
+.opisanie p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- АДАПТИВ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ --- */
+@media (max-width: 768px) {
+    .maps {
+        padding: 150px 15px 20px 15px;
+    }
+
+    .maps h2 {
+        font-size: 1.5rem;
+        margin: 30px 0 15px 0;
+        letter-spacing: 1.5px;
+    }
+
+    .map {
+        padding: 6px;
+        outline-offset: -4px;
+    }
+
+    .opisanie {
+        margin: 15px 15px 50px 15px;
+        padding: 25px 20px;
+    }
+
+    .opisanie p {
+        font-size: 1rem;
+        text-indent: 20px;
+    }
+}

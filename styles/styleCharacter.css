@@ -1,0 +1,213 @@
+/* --- КОНТЕЙНЕР СТРАНИЦЫ ПЕРСОНАЖЕЙ --- */
+body > div {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 130px 20px 80px 20px; /* Отступ сверху под фиксированное меню */
+    position: relative;
+    z-index: 2;
+}
+
+/* --- ЗАГОЛОВКИ КАТЕГОРИЙ (БОГИ, ЛИЧНОСТИ, ЛЮДИ) --- */
+h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #d1cbb3;
+    text-align: center;
+    margin: 60px 0 35px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #2b3026;
+    padding-bottom: 15px;
+    text-shadow: 0 0 15px rgba(85, 102, 68, 0.4);
+}
+
+/* Языческие руны по бокам от заголовка */
+h2::before, h2::after {
+    content: " ᛟ ";
+    color: #556644;
+    font-size: 1.5rem;
+    margin: 0 15px;
+}
+h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #d3c179;
+    text-align: center;
+    margin: 60px 0 35px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    text-shadow: 0 0 15px rgba(113, 151, 75, 0.4);
+}
+
+/* Языческие руны по бокам от заголовка */
+h3::before, h3::after {
+    color: #556644;
+    font-size: 1.5rem;
+    margin: 0 15px;
+}
+
+/* --- СЕТКА КАРТОЧЕК --- */
+.list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    align-items: start; /* Чтобы карточки в ряду не растягивались по высоте самой длинной */
+}
+
+/* --- КАРТОЧКА ПЕРСОНАЖА --- */
+.chr {
+    background: rgba(15, 17, 19, 0.85);
+    border: 1px solid #232722;
+    border-top: 3px solid #4a573e;
+    padding: 25px;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.7);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "name name"
+        "about about"
+        "appearance appearance"
+        "eyes animal"
+        "other other"
+        "maybe maybe";
+    gap: 12px;
+    align-items: start;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.chr:hover {
+    transform: translateY(-4px);
+    border-color: #6b7a58;
+}
+
+/* --- ИМЯ ПЕРСОНАЖА --- */
+.name {
+    grid-area: name;
+    font-size: 1.5rem;
+    color: #e2dcc4;
+    text-decoration: none;
+    border-bottom: 1px dashed #32382d;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* --- КАРТИНКИ БЕЗ ОБРЕЗКИ --- */
+.chr img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain; /* Вписывает картинку целиком без обрезки */
+    border: 1px solid #2c3128;
+    filter: contrast(105%) saturate(85%);
+    background-color: #070809;
+    padding: 4px;
+}
+
+.appearance {
+    grid-area: appearance;
+}
+
+.eyes {
+    grid-area: eyes;
+    max-height: 160px;
+    border-color: #4a2828 !important; /* Темно-кровавая рамка */
+}
+
+.animal {
+    grid-area: animal;
+    max-height: 160px;
+}
+
+.other {
+    grid-area: other;
+    max-height: 180px;
+}
+
+/* --- ТЕКСТ И ЗАМЕТКИ --- */
+.about {
+    grid-area: about;
+    color: #aba58d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.maybe {
+    grid-area: maybe;
+    color: #767c6e;
+    font-size: 0.9rem;
+    font-style: italic;
+    border-left: 2px solid #4a2828;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+
+/* --- СКРЫТИЕ ПУСТЫХ ПОЛЕЙ --- */
+.chr img[src=""], 
+.chr img:not([src]) {
+    display: none;
+}
+
+.maybe:empty, 
+.about:empty {
+    display: none;
+}
+
+/* --- АДАПТИВ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (characters.css) --- */
+@media (max-width: 768px) {
+    body > div {
+        padding: 150px 15px 50px 15px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        margin: 40px 0 25px 0;
+        letter-spacing: 2px;
+    }
+
+    h2::before, h2::after {
+        font-size: 1.1rem;
+        margin: 0 8px;
+    }
+    h3 {
+        font-size: 1.3rem;
+        margin: 40px 0 25px 0;
+        letter-spacing: 2px;
+    }
+
+    h3::before, h3::after {
+        font-size: 1.1rem;
+        margin: 0 8px;
+    }
+    /* Делаем одну колонку карточек на всю ширину экрана */
+    .list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Перестраиваем внутренность карточки в один вертикальный столбец */
+    .chr {
+        padding: 20px 15px;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "name"
+            "about"
+            "appearance"
+            "eyes"
+            "animal"
+            "other"
+            "maybe";
+    }
+
+    .name {
+        font-size: 1.35rem;
+    }
+
+    /* На телефоне разрешаем картинкам быть чуть крупнее по высоте */
+    .eyes, .animal, .other {
+        max-height: 220px;
+    }
+}

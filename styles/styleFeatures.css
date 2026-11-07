@@ -1,0 +1,111 @@
+/* --- ПОЛНЫЙ СБРОС ПОЗИЦИОНИРОВАНИЯ ДЛЯ КОНТЕЙНЕРА --- */
+.bloks {
+    display: block !important; /* Отключаем Grid, используем надежный блочный поток */
+    width: 100% !important;
+    max-width: 850px !important; /* Оптимальная ширина для чтения текста по центру */
+    margin: 0 auto !important;
+    padding: 150px 20px 80px 20px !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 2;
+    counter-reset: world-law;
+}
+
+/* --- КАРТОЧКА ОСОБЕННОСТИ МИРА (ШИРОКИЙ СВИТОК) --- */
+.blok {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 35px 0 !important; /* Четкий отступ вниз между блоками */
+    padding: 35px 40px !important;
+    
+    /* Хтоническое оформление */
+    background: linear-gradient(145deg, rgba(18, 20, 22, 0.92), rgba(10, 11, 13, 0.96));
+    border: 1px solid #262b23;
+    border-left: 4px solid #556644;
+    border-right: 1px solid #1a1d18;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), inset 0 0 30px rgba(0, 0, 0, 0.9);
+    
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    counter-increment: world-law;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blok:hover {
+    border-left-color: #8a3b3b; /* При наведении загорается кроваво-ржавый оттенок */
+    box-shadow: 0 15px 40px rgba(74, 40, 40, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Римская или руническая метка в углу */
+.blok::before {
+    content: "ЗАКОН 0" counter(world-law);
+    display: block;
+    font-size: 0.75rem;
+    color: #556644;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.blok:nth-child(n+10)::before {
+    content: "ЗАКОН " counter(world-law);
+}
+
+/* --- ЗАГОЛОВОК БЛОКА --- */
+.blok h2 {
+    display: block !important;
+    font-size: 1.8rem !important;
+    font-weight: 400 !important;
+    color: #d8d2ba !important;
+    text-align: left !important; /* Выравнивание по левому краю для удобства чтения */
+    margin: 0 0 20px 0 !important;
+    padding: 0 0 12px 0 !important;
+    border-bottom: 1px solid #282e24 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: none !important;
+}
+
+/* Убираем лишние руны по бокам, если они подтянулись с других страниц */
+.blok h2::before, 
+.blok h2::after {
+    content: none !important;
+}
+
+/* --- ТЕКСТ ОПИСАНИЯ --- */
+.blok p {
+    color: #b0aa92 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    margin: 0 0 15px 0 !important;
+    text-indent: 25px; /* Книжная красная строка */
+}
+
+.blok p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* --- АДАПТИВ ДЛЯ ТЕЛЕФОНОВ --- */
+@media (max-width: 768px) {
+    .bloks {
+        padding: 160px 15px 50px 15px !important;
+    }
+
+    .blok {
+        padding: 25px 20px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .blok h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .blok p {
+        font-size: 1rem !important;
+        text-indent: 15px;
+    }
+}
