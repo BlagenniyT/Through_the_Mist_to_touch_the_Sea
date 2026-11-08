@@ -43,7 +43,6 @@
 
 /* Римская или руническая метка в углу */
 .blok::before {
-    content: "ЗАКОН 0" counter(world-law);
     display: block;
     font-size: 0.75rem;
     color: #556644;
@@ -52,9 +51,6 @@
     text-transform: uppercase;
 }
 
-.blok:nth-child(n+10)::before {
-    content: "ЗАКОН " counter(world-law);
-}
 
 /* --- ЗАГОЛОВОК БЛОКА --- */
 .blok h2 {
@@ -108,4 +104,32 @@
         font-size: 1rem !important;
         text-indent: 15px;
     }
+}
+footer {
+    position: relative; /* Чтобы мы могли позиционировать Пава относительно футера */
+}
+
+.pav {
+    position: absolute;
+    bottom: 5px;   /* Прижимаем к самому низу */
+    right: 15px;   /* Прячем в правый нижний угол */
+    width: 70px;   /* Делаем совсем крошечным */
+    height: auto;
+    
+    /* Слияние с хтоническим фоном */
+    opacity: 0.04;                  /* Почти невидимый (всего 4% видимости) */
+    filter: grayscale(100%) contrast(80%); /* Убираем цвета и приглушаем контраст */
+    mix-blend-mode: luminosity;    /* Картинка перенимает текстуру и цвет фона */
+    
+    cursor: default;
+    pointer-events: auto;           /* Разрешаем наведение мышкой */
+    transition: all 0.8s ease-in-out; /* Очень плавное, "туманное" проявление */
+    z-index: 1;
+}
+
+/* Эффект при наведении — Пав плавно материализуется из тумана */
+.pav:hover {
+    opacity: 0.65;                  /* Проявляется, но не слепит глаза */
+    filter: grayscale(20%) contrast(110%); /* Возвращаются приглушенные цвета */
+    transform: scale(1.1);          /* Слегка увеличивается, словно делает шаг вперед */
 }
