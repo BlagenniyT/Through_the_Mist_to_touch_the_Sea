@@ -215,13 +215,12 @@ h3::before, h3::after {
 .pav {
     position: absolute;
     bottom: 5px;   /* Прижимаем к самому низу */
-    left: 15px;   /* Прячем в левый нижний угол */
+    left: 15px;   /* Прячем в правый нижний угол */
     width: 50px;   /* Делаем совсем крошечным */
     height: auto;
     
     /* Слияние с хтоническим фоном */
     opacity: 0.04;                  /* Почти невидимый (всего 4% видимости) */
-    
     cursor: default;
     pointer-events: auto;           /* Разрешаем наведение мышкой */
     transition: all 0.8s ease-in-out; /* Очень плавное, "туманное" проявление */
